@@ -45,12 +45,12 @@
 	
 	<distributionManagement>
 		 <snapshotRepository>
-		    <id>nexusRepo</id>
+		    <id>nexus</id>
 		    <url>http://18.183.149.18:8081/repository/venakat-snap/</url>
 		 </snapshotRepository>
 		
 		<repository>
-		    <id>nexusRepo</id>
+		    <id>nexus</id>
 		    <url>http://18.183.149.18:8081/repository/venkat-rel/</url>
 		</repository>
   	</distributionManagement>
