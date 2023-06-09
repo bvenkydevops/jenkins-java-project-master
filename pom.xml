@@ -10,9 +10,9 @@
 	
 	<properties>
 	<docker.image.prefix>kammana</docker.image.prefix>
-		<sonar.host.url>http://54.250.146.208:9000/</sonar.host.url>
+		<sonar.host.url>http://34.207.81.93:9000/</sonar.host.url>
                 <sonar.login>admin</sonar.login>
-                <sonar.password>admin</sonar.password>
+                <sonar.password>admin1</sonar.password>
 		<sonar.ws.timeout>600000</sonar.ws.timeout>
 	</properties>	
 	<dependencies>
@@ -41,18 +41,22 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+		<plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.2</version>
+
+</plugin>
         </plugins>
     </build>
 	
 	<distributionManagement>
 		 <snapshotRepository>
 		    <id>nexus</id>
-		    <url>http://52.194.186.214:8081/repository/venakat-snap/</url>
+		    <url>http://3.82.188.225:8081/repository/tej-snap/</url>
 		 </snapshotRepository>
-		
 		<repository>
 		    <id>nexus</id>
-		    <url>http://52.194.186.214:8081/repository/venkat-rel/</url>
+		    <url>http://3.82.188.225:8081/repository/tej-rele/</url>
 		</repository>
   	</distributionManagement>
 	
