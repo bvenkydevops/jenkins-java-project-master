@@ -20,16 +20,16 @@ CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
 ----------------------------------------------------------------------------------------
 Multistage Docker file ,In this 2 stages are there 1 .Build stage 2.Final stage
 ################## Build stage ################################################# #Use Ubuntu as the base image for building the app  \
-FROM ubuntu:20.04 AS build
-ENV DEBIAN_FRONTEND=noninteractive
-#Install Java 17 and Maven
+FROM ubuntu:20.04 AS build           \
+ENV DEBIAN_FRONTEND=noninteractive    \
+#Install Java 17 and Maven               \
 RUN apt-get update &&
 apt-get install -y openjdk-17-jdk maven git \
 
 #Clone the repository
 RUN git clone https://github.com/bvenkydevops/jenkins-java-project-master.git \
 
-#Set the working directory to the webapp folder
+#Set the working directory to the webapp folder      \
 WORKDIR  \
 
 #Build the project using Maven
