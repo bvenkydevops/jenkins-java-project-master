@@ -4,18 +4,21 @@
 NORMAL DOCKERFILE OR Single stage Dockerfile
 -----------------------------------------------------------------------------
 #single stage Dockerfile
-FROM ubuntu AS build              \
-RUN apt-get update && apt-get install -y openjdk-17-jdk && apt-get install -y maven git wget       \
-RUN git clone https://github.com/bvenkydevops/jenkins-java-project-master.git   \
-WORKDIR  /jenkins-java-project-master/           \
-RUN mvn clean package              \
+FROM ubuntu AS build
+RUN apt-get update && apt-get install -y openjdk-17-jdk && apt-get install -y maven git wget
+RUN git clone https://github.com/bvenkydevops/jenkins-java-project-master.git
+WORKDIR /jenkins-java-project-master/
+RUN mvn clean package
 #Install Tomcat
-RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.tar.gz &&
-tar -xzf apache-tomcat-9.0.76.tar.gz &&
-mv apache-tomcat-9.0.76 /usr/local/tomcat
-RUN cp target/myweb-8.3.2-SNAPSHOT.war /usr/local/tomcat/webapps/myweb-8.3.2-SNAPSHOT.war               \
-EXPOSE 8080         \
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.tar.gz && \
+    tar -xzf apache-tomcat-9.0.76.tar.gz && \
+    mv apache-tomcat-9.0.76 /usr/local/tomcat
+RUN cp target/myweb-8.3.2-SNAPSHOT.war /usr/local/tomcat/webapps/
+EXPOSE 8080
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+
+
+** http://3.94.105.153:8080/myweb-8.3.2-SNAPSHOT/ **
 
 ----------------------------------------------------------------------------------------
 Multistage Docker file ,In this 2 stages are there 1 .Build stage 2.Final stage
