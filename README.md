@@ -7,13 +7,13 @@ NORMAL DOCKERFILE OR Single stage Dockerfile
 FROM ubuntu AS build              \
 RUN apt-get update && apt-get install -y openjdk-17-jdk && apt-get install -y maven git wget       \
 RUN git clone https://github.com/bvenkydevops/jenkins-java-project-master.git   \
-WORKDIR                \
+WORKDIR  /jenkins-java-project-master/           \
 RUN mvn clean package              \
 #Install Tomcat
 RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.tar.gz &&
 tar -xzf apache-tomcat-9.0.76.tar.gz &&
 mv apache-tomcat-9.0.76 /usr/local/tomcat
-RUN cp target/*.war /usr/local/tomcat/webapps/               \
+RUN cp target/myweb-8.3.2-SNAPSHOT.war /usr/local/tomcat/webapps/myweb-8.3.2-SNAPSHOT.war               \
 EXPOSE 8080         \
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
 
@@ -30,7 +30,7 @@ apt-get install -y openjdk-17-jdk maven git \
 RUN git clone https://github.com/bvenkydevops/jenkins-java-project-master.git \
 
 #Set the working directory to the webapp folder      \
-WORKDIR  \
+WORKDIR  /jenkins-java-project-master/    \
 
 #Build the project using Maven
 RUN mvn clean package             \
@@ -39,7 +39,7 @@ RUN mvn clean package             \
 FROM tomcat:9.0.76-jdk17 \
 
 #Copy the WAR file from the build stage to Tomcat's webapps directory
-COPY --from=build /target/*.war /usr/local/tomcat/webapps/  \
+COPY --from=build /target/myweb-8.3.2-SNAPSHOT.war /usr/local/tomcat/webapps/myweb-8.3.2-SNAPSHOT.war  \
 
 #Expose port 8080
 EXPOSE 8080          
