@@ -19,7 +19,7 @@ CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
 
 ----------------------------------------------------------------------------------------
 Multistage Docker file ,In this 2 stages are there 1 .Build stage 2.Final stage
-################## Build stage ################################################# #Use Ubuntu as the base image for building the app
+################## Build stage ################################################# #Use Ubuntu as the base image for building the app  \
 FROM ubuntu:20.04 AS build
 ENV DEBIAN_FRONTEND=noninteractive
 #Install Java 17 and Maven
